@@ -8,6 +8,7 @@ Develop with:
 
 - Custom Hooks
 - Custom Context
+- Memo hook in Speaker component to improve performance
 - REST api
 
 
