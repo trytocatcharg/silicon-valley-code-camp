@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import { SpeakerFilterContext } from "../contexts/SpeakFilterContext";
 
 function Session({ title, room }) {
@@ -103,7 +103,7 @@ function Session({ title, room }) {
     );
   }
   
-  function Speaker({ speaker, showSessions, onFavoriteToggle }) {
+  const Speaker = memo(function Speaker({ speaker, showSessions, onFavoriteToggle }) {
     const { id, first, last, sessions } = speaker;
     return (
       <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-sm-12 col-xs-12">
@@ -116,6 +116,10 @@ function Session({ title, room }) {
         }
       </div>
     );
+  }, areEqualSpeaker);
+
+  function areEqualSpeaker (prevProps, nextProps) {
+    return (prevProps.speaker.favorite === nextProps.speaker.favorite);
   }
   
   export default Speaker;
